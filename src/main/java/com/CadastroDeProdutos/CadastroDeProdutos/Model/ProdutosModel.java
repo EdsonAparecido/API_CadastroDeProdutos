@@ -20,4 +20,8 @@ public class ProdutosModel {
     private Long quantidade;
     private Double valor;
     private Double total;
+
+    public Double getTotal() {
+        return quantidade * valor;
+    }
 }

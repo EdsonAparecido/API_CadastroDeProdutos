@@ -18,6 +18,7 @@ public class ProdutosController {
     //CRIAR PRODUTO
     @PostMapping
     public ProdutosModel newProduct(@RequestBody ProdutosModel produtosModel){
+        produtosModel.setTotal(produtosModel.getValor() * produtosModel.getQuantidade());
         return produtosService.save(produtosModel);
     }
     //LISTAR PRODUTO

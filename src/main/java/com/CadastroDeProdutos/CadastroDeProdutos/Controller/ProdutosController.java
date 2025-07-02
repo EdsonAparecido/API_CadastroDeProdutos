@@ -1,7 +1,10 @@
 package com.CadastroDeProdutos.CadastroDeProdutos.Controller;
 
+import com.CadastroDeProdutos.CadastroDeProdutos.DTO.ProdutosDTO;
+import com.CadastroDeProdutos.CadastroDeProdutos.Mapper.ProdutosMapper;
 import com.CadastroDeProdutos.CadastroDeProdutos.Model.ProdutosModel;
 import com.CadastroDeProdutos.CadastroDeProdutos.Service.ProdutosService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +20,9 @@ public class ProdutosController {
 
     //CRIAR PRODUTO
     @PostMapping
-    public ProdutosModel newProduct(@RequestBody ProdutosModel produtosModel){
-        produtosModel.setTotal(produtosModel.getValor() * produtosModel.getQuantidade());
+    public ProdutosModel newProduct(@Valid @RequestBody ProdutosDTO produtosDTO){
+        produtosDTO.setTotal(produtosDTO.getValor().multiply(produtosDTO.getQuantidade()));
+        ProdutosModel produtosModel = ProdutosMapper.toModel(produtosDTO);
         return produtosService.save(produtosModel);
     }
     //LISTAR PRODUTO

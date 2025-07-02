@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "tb_Produtos")
 @AllArgsConstructor
@@ -22,10 +24,10 @@ public class ProdutosModel {
     private String descricao;
 
     @Column(nullable = false, precision = 7)
-    private Long quantidade;
+    private BigDecimal quantidade;
 
     @Column(nullable = false, precision = 14, scale = 2)
-    private Double valor;
+    private BigDecimal valor;
 
-    private Double total;
+    private BigDecimal total;
 }
